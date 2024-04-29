@@ -2,17 +2,27 @@
     "name": "meridoc",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "./dist/main.js",
     "scripts": {
-        "format": "eslint . --ext .ts && npx prettier --write --ignore-unknown ."
+        "format": "eslint . --ext .ts && npx prettier --write --ignore-unknown .",
+        "build": "npm run format && clear && echo 'Please wait... Build Started' && npx tsc -p tsconfig.json",
+        "start": "node ./dist/index.js",
+        "dev": "npx tsc -p tsconfig.json --watch"
+    },
+    "bin": {
+        "meridoc": "./dist/main.js"
     },
     "keywords": [],
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
     "dependencies": {
-        "swagger-parser": "^10.0.3"
+        "@apidevtools/swagger-parser": "^10.1.0",
+        "commander": "^12.0.0",
+        "json-to-ts": "^2.1.0",
+        "npm": "^10.6.0"
     },
     "devDependencies": {
+        "@types/node": "^20.12.7",
         "@typescript-eslint/eslint-plugin": "^7.7.1",
         "@typescript-eslint/parser": "^7.7.1",
         "eslint": "^8.57.0",
