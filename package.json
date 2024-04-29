@@ -5,7 +5,8 @@
     "main": "./dist/main.js",
     "scripts": {
         "format": "eslint . --ext .ts && npx prettier --write --ignore-unknown .",
-        "build": "npm run format && clear && echo 'Please wait... Build Started' && npx tsc -p tsconfig.json",
+        "lint": "eslint . --ext .ts",
+        "build": "npm run lint && clear && echo 'Please wait... Build Started' && npx tsc -p tsconfig.json",
         "start": "node ./dist/index.js",
         "dev": "npx tsc -p tsconfig.json --watch"
     },

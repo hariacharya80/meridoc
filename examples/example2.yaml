@@ -1,0 +1,9 @@
+openapi: 3.0.2
+info:
+    title: Example Endpoint 
+paths:
+  /book/{bookId}:
+    get:
+      summary: Get a book
+    params:
+      bookId: string

@@ -12,21 +12,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const commander_1 = require("commander");
 const parseInputFile_1 = require("./parser/parseInputFile");
+const generateTypes_1 = require("./generator/generateTypes");
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const program = new commander_1.Command();
         program.option('-f, --file <file>', 'Path of the file to be processed.');
         const parsedResult = program.parse(process.argv);
         if (!parsedResult.opts().file) {
+            console.log(parsedResult.opts());
             throw new Error('Please provide a valid file path.');
         }
-        console.log(parsedResult.opts());
         const filePath = parsedResult.opts().file;
         const fileContent = yield (0, parseInputFile_1.parseInputFiles)(filePath);
-        console.log(fileContent);
+        yield (0, generateTypes_1.generateTypes)(fileContent);
+        return true;
     });
 }
 main().catch((error) => {
-    console.error(`unknown error occoured while running the script: ${error}`);
+    console.error('Unexcepted error:');
+    console.error(error);
     process.exit(1);
 });
